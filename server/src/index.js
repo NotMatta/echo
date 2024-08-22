@@ -15,14 +15,13 @@ const io = new Server(server , {
 io.on("connection", (socket) => {
     const socketId = socket.id
     console.log(`${socketId} has connected!`)
-    socket.emit("established_connection",{message:"You are connected"})
     socket.on("disconnect", () => {
         console.log(`${socketId} has disconnected!`)
     })
 
     socket.on("messageToServer",(data) => {
         console.log({...data, from: socketId})
-        socket.broadcast.emit("response",{message:`you sent ${data.message}`})
+        socket.emit("response",{message:`you sent ${data.message}`})
     })
 })
 

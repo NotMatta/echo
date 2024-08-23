@@ -1,14 +1,15 @@
-import { AudioWaveform } from "lucide-react"
+"use client"
+import SideBar from "@/components/sidebar-component"
+import { Menu } from "lucide-react"
+import { useState } from "react"
 
 const Layout = ({children}) => {
+    const [isVisible,setVisible] = useState(false)
     return(
-        <div className="flex h-screen w-full">
-            <div className="h-full w-16 border flex flex-col items-center py-1 gap-1">
-                    <div className="text-foreground rounded-xl size-12 flex items-center justify-center duration-100 hover:bg-foreground hover:text-background ">
-                        <AudioWaveform size="32px"/>
-                    </div>
-                    <div className="border-t w-10"/>
-            </div>
+        <div className="flex h-screen w-full relative">
+            <SideBar isVisible={isVisible} setVisible={setVisible}/>
+            <div onClick={() => {setVisible(false)}} className={`absolute w-full h-full top-0 left-0 bg-black md:hidden ${isVisible? "opacity-20" : "opacity-0 hidden"}`}></div>
+            <button onClick={() => {setVisible(true)}} className="md:hidden"><Menu/></button>
             {children}
         </div>
     )

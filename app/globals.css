@@ -83,5 +83,7 @@
   p{
     font-size: clamp(8px , 8vw, 18px);
   }
-
+    .no-scrollbar{
+        scrollbar-width: none;
+    }
 }

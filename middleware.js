@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
-import Cookies from "js-cookie"
 
-const middleware = async (req) => {
+const middleware = async (req,res) => {
     const currentURL = new URL(req.url)
     if(currentURL.pathname.indexOf("/auth") == 0){
         if(!!(req.cookies.get("token"))){
